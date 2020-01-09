@@ -12,4 +12,10 @@ export class MovieService {
     getMovies() {
         return of(movies);
     }
+
+    movieDetails(id: number) {
+        return of(
+            movies.find(movie => movie.id === id)
+        );
+    }
 }
