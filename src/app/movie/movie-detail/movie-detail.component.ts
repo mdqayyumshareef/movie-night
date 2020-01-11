@@ -10,29 +10,24 @@ import { NavbarService } from 'src/app/navbar/services/navbar.service';
     templateUrl: './movie-detail.component.html',
     styleUrls: ['./movie-detail.component.scss']
 })
-export class MovieDetailComponent implements OnInit, OnDestroy {
+export class MovieDetailComponent implements OnInit {
 
-    id: number;
+    id: string;
     movie: Movie;
-    movieSub$: Subscription;
 
     constructor(
         private service: MovieService,
         private route: ActivatedRoute,
         private navbarService: NavbarService
     ) {
-        this.id = +route.snapshot.paramMap.get('id');
+        this.id = route.snapshot.paramMap.get('id');
     }
 
     ngOnInit() {
-        this.movieSub$ = this.service.movieDetails(this.id)
+        this.service.movieDetails(this.id)
             .subscribe(movie => {
                 this.movie = movie;
                 this.navbarService.title.next(movie.name);
             });
-    }
-
-    ngOnDestroy() {
-        this.movieSub$.unsubscribe();
     }
 }

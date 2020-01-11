@@ -22,5 +22,4 @@ export class MovieListComponent implements OnInit {
         this.movies$ = this.movieService.getMovies();
         this.navbarService.title.next('Movie Night')
     }
-
 }

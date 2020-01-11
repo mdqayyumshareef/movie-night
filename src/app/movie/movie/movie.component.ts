@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from '../model/movie.model';
 
 @Component({
@@ -14,5 +14,4 @@ export class MovieComponent implements OnInit {
 
     ngOnInit() {
     }
-
 }
