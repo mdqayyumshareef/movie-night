@@ -10,11 +10,14 @@ import { NavbarService } from './services/navbar.service';
 export class NavbarComponent implements OnInit {
 
     title$ = this.navbarService.title;
+    router: Router;
 
     constructor(
         private navbarService: NavbarService,
-        private router: Router
-    ) { }
+        private ngRouter: Router
+    ) {
+        this.router = ngRouter;
+    }
 
     ngOnInit() {
     }
