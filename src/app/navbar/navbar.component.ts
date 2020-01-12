@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavbarService } from './services/navbar.service';
 
 @Component({
@@ -11,7 +12,8 @@ export class NavbarComponent implements OnInit {
     title$ = this.navbarService.title;
 
     constructor(
-        private navbarService: NavbarService
+        private navbarService: NavbarService,
+        private router: Router
     ) { }
 
     ngOnInit() {

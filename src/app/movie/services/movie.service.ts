@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Movie } from '../model/movie.model';
-
 
 @Injectable({
     providedIn: 'root'
@@ -24,5 +22,9 @@ export class MovieService {
 
     movieDetails(id: string): Observable<Movie> {
         return this.http.get<Movie>(this.movieURL.concat(`/${id}`));
+    }
+
+    addMovie(movie: Movie) {
+        return this.http.post(this.movieURL, movie);
     }
 }
