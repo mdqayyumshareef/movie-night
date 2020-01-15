@@ -1,4 +1,10 @@
 <nav>
     <h1 routerLink="/movies">{{title$ | async}}</h1>
-    <button *ngIf="!router.url.includes('movies/add')" routerLink='movies/add'>Add</button>
+    <div>
+        <button *ngIf="!router.url.includes('movies/add')" routerLink='movies/add'>Add</button>
+        <a href="https://github.com/mdqayyumshareef/movie-night" target="_blank">
+            <i class="fab fa-github-square fa-lg"></i>
+            <span>View Source</span>
+        </a>
+    </div>
 </nav>

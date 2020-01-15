@@ -21,6 +21,7 @@ button {
   color: white;
   width: 100px;
   height: 30px;
+  margin-right: 16px;
   box-shadow: 2px 2px 0px black;
   border-radius: 8px;
   transition: 1 ease-in;
@@ -29,4 +30,8 @@ button {
     border-radius: 0px;
     transform: translateY(-1px);
   }
+}
+
+i {
+    margin-right: 5px;
 }
