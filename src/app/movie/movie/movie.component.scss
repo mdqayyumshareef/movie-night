@@ -6,11 +6,12 @@ img {
   }
 }
 
-div {
+.movie-content {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 h1 {
@@ -19,4 +20,11 @@ h1 {
 
 h2 {
   font-size: 18px;
+}
+
+.edit {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-right: 8px;
 }

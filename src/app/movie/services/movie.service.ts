@@ -27,4 +27,8 @@ export class MovieService {
     addMovie(movie: Movie) {
         return this.http.post(this.movieURL, movie);
     }
+
+    updateMovie(movie: Movie) {
+        return this.http.put(this.movieURL.concat(`/${movie._id}`), movie);
+    }
 }

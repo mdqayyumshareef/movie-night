@@ -1,7 +1,7 @@
 <ul *ngIf="movies$ | async as movies else loading">
     <li *ngFor="let movie of movies">
         <img [src]="movie.image" alt="film poster">
-        <a class="details" [routerLink]="movie._id">
+        <a class="details" [routerLink]="[movie._id, 'details']">
             See Details
         </a>
         <div class="overlay"></div>

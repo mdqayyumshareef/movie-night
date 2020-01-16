@@ -1,6 +1,9 @@
-<div *ngIf="movie">
+<div *ngIf="movie" class="movie-content">
     <img [src]="movie.image" alt="">
     <h1>{{movie.name}}</h1>
     <h2>Genre - {{movie.genre}}</h2>
     <h2>Release Year - {{movie.releaseYear}}</h2>
+    <div class="edit">
+        <a [routerLink]="['/movies','edit', movie._id]"><i class="fas fa-edit fa-lg"></i></a>
+    </div>
 </div>

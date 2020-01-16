@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavbarService } from 'src/app/navbar/services/navbar.service';
-import { MovieService } from '../services/movie.service';
 import { Movie } from '../model/movie.model';
-import { Router } from '@angular/router';
+import { MovieService } from '../services/movie.service';
 
 @Component({
     selector: 'app-add-movie',
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
     styleUrls: ['./add-movie.component.scss']
 })
 export class AddMovieComponent implements OnInit {
+
+    editMovieID: string;
 
     movieForm = this.fb.group({
         name: ['', [Validators.required]],
@@ -23,21 +25,53 @@ export class AddMovieComponent implements OnInit {
         private fb: FormBuilder,
         private router: Router,
         private navbarService: NavbarService,
-        private movieService: MovieService
+        private movieService: MovieService,
+        private route: ActivatedRoute
     ) {
-        this.navbarService.title.next('Add Movie');
+        this.editMovieID = this.route.snapshot.paramMap.get('id');
+        let title: string = '';
+        title = this.editMovieID ? 'Edit Movie' : 'Add Movie';
+        this.navbarService.title.next(title);
     }
 
     ngOnInit() {
+        if (this.editMovieID) {
+            this.movieService.movieDetails(this.editMovieID)
+                .subscribe(res => {
+                    this.movieForm.setValue({
+                        name: res.name,
+                        image: res.image,
+                        genre: res.genre,
+                        releaseYear: res.releaseYear
+                    });
+                });
+        }
     }
 
-    addMovie() {
+    submitMovieForm() {
         if (this.movieForm.valid) {
             const movie: Movie = this.movieForm.value;
-            this.movieService.addMovie(movie).subscribe(res => {
-                this.movieForm.reset();
-                this.router.navigate(['movies']);
-            })
+            if (this.editMovieID) {
+                this.updateMovie(movie);
+                return;
+            }
+            this.addNewMovie(movie);
         }
+    }
+
+    private addNewMovie(movie: Movie) {
+        this.movieService.addMovie(movie).subscribe(res => {
+            this.movieForm.reset();
+            this.router.navigate(['movies']);
+        });
+    }
+
+    private updateMovie(movie: Movie) {
+        movie._id = this.editMovieID;
+        this.movieService.updateMovie(movie)
+            .subscribe(res => {
+                this.movieForm.reset();
+                this.router.navigate(['movies', this.editMovieID, 'details']);
+            });
     }
 }
