@@ -28,4 +28,8 @@ button {
     border-radius: 0px;
     transform: translateY(-1px);
   }
+
+  &:disabled {
+    opacity: 0.6;
+  }
 }

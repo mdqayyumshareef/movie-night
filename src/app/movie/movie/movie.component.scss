@@ -28,3 +28,20 @@ h2 {
   right: 0px;
   padding-right: 8px;
 }
+
+.delete-btn {
+  margin-top: 15px;
+  background: linear-gradient(to right, #eb3349, #f45c43);
+  width: 100px;
+  height: 30px;
+  color: white;
+  font-size: 18px;
+  border: 0;
+  box-shadow: 2px 2px 0px black;
+  border-radius: 8px;
+  transition: 1 ease-in;
+  &:hover {
+    border-radius: 0px;
+    transform: translateY(-1px);
+  }
+}

@@ -31,4 +31,8 @@ export class MovieService {
     updateMovie(movie: Movie) {
         return this.http.put(this.movieURL.concat(`/${movie._id}`), movie);
     }
+
+    deleteMovie(id: string) {
+        return this.http.delete(this.movieURL.concat(`/${id}`));
+    }
 }
