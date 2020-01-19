@@ -67,8 +67,7 @@ export class AddMovieComponent implements OnInit {
     }
 
     private updateMovie(movie: Movie) {
-        movie._id = this.editMovieID;
-        this.movieService.updateMovie(movie)
+        this.movieService.updateMovie(this.editMovieID, movie)
             .subscribe(res => {
                 this.movieForm.reset();
                 this.router.navigate(['movies', this.editMovieID, 'details']);

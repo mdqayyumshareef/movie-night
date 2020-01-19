@@ -28,8 +28,8 @@ export class MovieService {
         return this.http.post(this.movieURL, movie);
     }
 
-    updateMovie(movie: Movie) {
-        return this.http.put(this.movieURL.concat(`/${movie._id}`), movie);
+    updateMovie(id: string, movie: Movie) {
+        return this.http.put(this.movieURL.concat(`/${id}`), movie);
     }
 
     deleteMovie(id: string) {
